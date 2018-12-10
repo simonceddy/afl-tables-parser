@@ -1,0 +1,6 @@
+suites:
+  default:
+    psr4_prefix:  Eddy\AflTables
+    namespace:    Eddy\AflTables
+
+formatter.name: pretty
