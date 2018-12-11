@@ -16,7 +16,7 @@ class Splitter
 
     public static function splitMultiWhitespace(string $input)
     {
-        return preg_split('/\w(\w*)/', $input);
+        return preg_split('/\s(\s*)/', $input);
     }
 
     public static function splitPattern(string $pattern, string $input)

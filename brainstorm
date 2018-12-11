@@ -1,0 +1,9 @@
+season->hasMany
+    ->rounds->hasMany
+        ->matches->hasMany
+            ->statlines
+
+team->hasMany
+    ->rosters->hasMany
+        ->players->hasMany
+            ->statlines
