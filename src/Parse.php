@@ -14,12 +14,12 @@ use Eddy\AflTables\Parser\Txt\SeasonTxtFile;
  */
 class Parse
 {
-    public static function seasonTxtFile(string $contents, array $options = [])
-    {
-        $parser = new SeasonTxtFile(
-            $options['map'] ?? null,
-            [$options['factory'] ?? null]
-        );
+    public static function seasonTxtFile(
+        string $contents,
+        array $factories = [],
+        array $options = []
+    ) {
+        $parser = new SeasonTxtFile($options['map'] ?? null, $factories);
         return $parser->parse($contents);
     }
 }

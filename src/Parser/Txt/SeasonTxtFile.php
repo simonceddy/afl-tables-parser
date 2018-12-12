@@ -12,6 +12,7 @@ use Eddy\AflTables\Util\TeamName;
 use Eddy\AflTables\Support\HasFactoryArray;
 use Eddy\AflTables\Factory\StatlineFactory;
 use Eddy\AflTables\Contract\Model;
+use Eddy\AflTables\Factory\MatchFactory;
 
 class SeasonTxtFile implements Parser
 {
@@ -40,7 +41,8 @@ class SeasonTxtFile implements Parser
         'player',
         'statline',
         'team',
-        'roster'
+        'roster',
+        'match'
     ];
 
     public function __construct(
@@ -56,6 +58,7 @@ class SeasonTxtFile implements Parser
         isset($factories['player']) ?: $factories['player'] = new PlayerFactory;
         isset($factories['team']) ?: $factories['team'] = new TeamFactory;
         isset($factories['statline']) ?: $factories['statline'] = new StatlineFactory;
+        isset($factories['match']) ?: $factories['match'] = new MatchFactory;
         $this->addFactories($factories);
     }
 
@@ -71,7 +74,8 @@ class SeasonTxtFile implements Parser
             'teams' => $this->teams,
             'rosters' => $this->rosters,
             'players' => $this->players,
-            'statlines' => $this->statlines
+            'statlines' => $this->statlines,
+            'matches' => $this->matches
         ];
     }
 
@@ -122,10 +126,9 @@ class SeasonTxtFile implements Parser
 
     protected function initPlayer(array $data)
     {
-        $this->players[$data['name']] = $this->factory('player')->buildFrom([
-            'name' => $data['name'],
-            'afl_tables_id' => $data['afl_tables_id']
-        ])->generateUuid();
+        $this->players[$data['name']] = $this->factory('player')
+            ->buildFrom($data)
+            ->generateUuid();
         $this->rosters[$data['team']][] = $this->players[$data['name']]->uuid();
     }
 }

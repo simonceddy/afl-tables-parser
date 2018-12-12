@@ -1,7 +1,12 @@
 <?php
-
 namespace Eddy\AflTables\Model;
 
-class Match
+use Eddy\AflTables\Contract\Model\Match as MatchContract;
+
+class Match extends BaseModel implements PlayerContract
 {
+    protected $attributes = [
+        'round',
+        'season'
+    ];
 }

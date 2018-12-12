@@ -6,7 +6,7 @@ use Ramsey\Uuid\UuidInterface;
 use Eddy\AflTables\Contract\Model;
 use Carbon\Carbon;
 
-abstract class BaseModel implements Model
+abstract class BaseModel implements Model, \JsonSerializable
 {
     protected $values = [];
 
@@ -17,7 +17,7 @@ abstract class BaseModel implements Model
     /**
      * Creation timestamp
      *
-     * @var int
+     * @var \DatetimeInterface
      */
     protected $created_on;
 
@@ -63,7 +63,7 @@ abstract class BaseModel implements Model
 
     protected function generateCreatedOn()
     {
-        $this->created_on = Carbon::now()->timestamp;
+        $this->created_on = Carbon::now();
     }
 
     public function uuid()
