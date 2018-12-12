@@ -7,5 +7,7 @@ class Team extends BaseModel implements TeamContract
 {
     protected $attributes = [
         'team_short',
+        'city',
+        'name'
     ];
 }

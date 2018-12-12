@@ -3,6 +3,6 @@ namespace Eddy\AflTables\Contract;
 
 interface Factory
 {
-    public function build(array $data): Model;
+    public function buildFrom(array $data): Model;
 }
 

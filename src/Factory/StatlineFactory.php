@@ -1,14 +1,14 @@
 <?php
 namespace Eddy\AflTables\Factory;
 
-use Eddy\AflTables\Model\Player;
+use Eddy\AflTables\Model\Statline;
 use Eddy\AflTables\Contract\Model;
 use Eddy\AflTables\Contract\Factory;
 
-class PlayerFactory implements Factory
+class StatlineFactory implements Factory
 {
     public function buildFrom(array $data): Model
     {
-        return new Player($data);
+        return new Statline($data);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace spec\Eddy\AflTables;
 
-use Eddy\AflTables\App;
+use Eddy\AflTables\Parse;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -10,6 +10,6 @@ class AppSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType(App::class);
+        $this->shouldHaveType(Parse::class);
     }
 }
