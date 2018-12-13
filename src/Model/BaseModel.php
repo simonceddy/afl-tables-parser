@@ -52,7 +52,8 @@ abstract class BaseModel implements Model, \JsonSerializable
             $this->uuid = Uuid::fromString($data['uuid']);
             unset($data['uuid']);
         }
-        foreach ($this->attributes as $key) {
+        foreach ($this->attributes as $key => $val) {
+            !is_int($key) ?: $key = $val;
             if (isset($data[$key])) {
                 $this->values[$key] = $data[$key];
             } else {
@@ -86,7 +87,9 @@ abstract class BaseModel implements Model, \JsonSerializable
                 'Invalid attribute: '.$attribute.'.'
             );
         }
-        // TODO: validate if attributes entry is array
+        if (is_array($this->attributes[$attribute])) {
+            // TODO: validate value from any rules in attribute array
+        }
         $this->values[$attribute] = $value;
         return $this;
     }
@@ -95,6 +98,7 @@ abstract class BaseModel implements Model, \JsonSerializable
     {
         if (!empty($this->attributes)
             && !in_array($attribute, $this->attributes)
+            && !array_key_exists($attribute, $this->attributes)
         ) {
             throw new \InvalidArgumentException(
                 'Invalid attribute: '.$attribute.'.'

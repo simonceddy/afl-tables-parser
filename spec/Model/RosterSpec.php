@@ -3,15 +3,15 @@
 namespace spec\Eddy\AflTables\Model;
 
 use Eddy\AflTables\Contract\Model;
-use Eddy\AflTables\Model\Match;
+use Eddy\AflTables\Model\Roster;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class MatchSpec extends ObjectBehavior
+class RosterSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType(Match::class);
+        $this->shouldHaveType(Roster::class);
     }
 
     function it_is_a_valid_model()
@@ -22,10 +22,10 @@ class MatchSpec extends ObjectBehavior
     function it_can_be_constructed_from_state()
     {
         $state = [
-            'round' => 1,
+            'team' => 'RI',
             'season' => 2018
         ];
         $this->beConstructedWith($state);
-        $this->get('round')->shouldReturn(1);
+        $this->get('season')->shouldReturn(2018);
     }
 }

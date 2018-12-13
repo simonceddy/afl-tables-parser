@@ -12,4 +12,9 @@ class SeasonTxtFileSpec extends ObjectBehavior
     {
         $this->shouldHaveType(SeasonTxtFile::class);
     }
+
+    function it_accepts_string_to_be_parsed_and_returns_arrays_of_successful_results()
+    {
+        $this->parse('sasfafasfasfa')->shouldHaveKeyWithValue('players', []);
+    }
 }

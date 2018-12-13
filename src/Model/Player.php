@@ -6,7 +6,8 @@ use Eddy\AflTables\Contract\Model\Player as PlayerContract;
 class Player extends BaseModel implements PlayerContract
 {
     protected $attributes = [
-        'name',
+        'surname',
+        'first_name',
         'afl_tables_id'
     ];
 }
