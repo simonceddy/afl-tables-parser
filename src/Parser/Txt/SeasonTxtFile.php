@@ -1,18 +1,18 @@
 <?php
 namespace Eddy\AflTables\Parser\Txt;
 
-use Eddy\AflTables\Contract\Parser;
-use Eddy\AflTables\Util\Splitter;
 use Eddy\AflTables\Contract\DataMap;
-use Eddy\AflTables\Map\SeasonTxtMap;
+use Eddy\AflTables\Contract\Factory;
+use Eddy\AflTables\Contract\Parser;
 use Eddy\AflTables\Factory\PlayerFactory;
 use Eddy\AflTables\Factory\TeamFactory;
-use Eddy\AflTables\Contract\Factory;
-use Eddy\AflTables\Util\TeamName;
-use Eddy\AflTables\Support\HasFactoryArray;
 use Eddy\AflTables\Factory\StatlineFactory;
-use Eddy\AflTables\Contract\Model;
 use Eddy\AflTables\Factory\MatchFactory;
+use Eddy\AflTables\Support\HasFactoryArray;
+use Eddy\AflTables\Map\SeasonTxtMap;
+use Eddy\AflTables\Util\Splitter;
+use Eddy\AflTables\Util\TeamName;
+use Eddy\Norm\Contract\Model;
 
 class SeasonTxtFile implements Parser
 {

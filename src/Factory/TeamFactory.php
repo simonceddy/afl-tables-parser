@@ -1,8 +1,8 @@
 <?php
 namespace Eddy\AflTables\Factory;
 
-use Eddy\AflTables\Model\Team;
-use Eddy\AflTables\Contract\Model;
+use Eddy\Norm\Team;
+use Eddy\Norm\Contract\Model;
 use Eddy\AflTables\Contract\Factory;
 
 class TeamFactory implements Factory

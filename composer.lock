@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b4970f9c31f7ff503f219760ba90285",
+    "content-hash": "20fd903f6dfdb2cb02cb315f29a49e3c",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -464,6 +464,51 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "simoneddy/norm",
+            "version": "v0.1-alpha",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simonceddy/norm.git",
+                "reference": "45f00c2125e9620faaa5d65664a3165cf3bddc17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simonceddy/norm/zipball/45f00c2125e9620faaa5d65664a3165cf3bddc17",
+                "reference": "45f00c2125e9620faaa5d65664a3165cf3bddc17",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": "^2.7",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "^5.1",
+                "ramsey/uuid": "^3.8"
+            },
+            "suggest": {
+                "ramsey/uuid": "Allows generating UUIDs for models",
+                "simoneddy/afl-tables-parser": "Utilities for converting data from AFL tables into Model objects."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Eddy\\Norm\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Eddy",
+                    "email": "simon@simoneddy.com.au"
+                }
+            ],
+            "description": "ORM for phooty",
+            "time": "2018-12-14T03:52:16+00:00"
         },
         {
             "name": "symfony/browser-kit",
@@ -1810,7 +1855,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "simoneddy/norm": 15
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
