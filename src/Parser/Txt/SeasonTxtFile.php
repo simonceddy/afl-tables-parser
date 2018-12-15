@@ -127,8 +127,11 @@ class SeasonTxtFile implements Parser
     protected function initPlayer(array $data)
     {
         $this->players[$data['name']] = $this->factory('player')
-            ->buildFrom($data)
-            ->generateUuid();
+            ->buildFrom($data);
+        // If Uuid is present generate UUIDs for players.
+        if (class_exists('Ramsey\Uuid\Uuid')) {
+            $this->players[$data['name']]->generateUuid();
+        }
         $this->rosters[$data['team']][] = $this->players[$data['name']]->uuid();
     }
 }

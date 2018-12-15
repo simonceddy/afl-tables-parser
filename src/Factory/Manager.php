@@ -12,35 +12,17 @@ class Manager implements FactoryManager
         'player', 'team', 'match', 'statline'
     ];
 
-    public function playerFactory()
+    public function __construct(array $factories = [])
     {
-        if (!$this->factory('player')) {
-            $this->addFactoryAs('player', new PlayerFactory);
-        }
-        return $this->factory('player');
+        $this->initFactories($factories);
     }
 
-    public function teamFactory()
+    private function initFactories(array $factories)
     {
-        if (!$this->factory('team')) {
-            $this->addFactoryAs('team', new TeamFactory);
-        }
-        return $this->factory('team');
-    }
-
-    public function matchFactory()
-    {
-        if (!$this->factory('match')) {
-            $this->addFactoryAs('match', new MatchFactory);
-        }
-        return $this->factory('match');
-    }
-
-    public function statlineFactory()
-    {
-        if (!$this->factory('statline')) {
-            $this->addFactoryAs('statline', new StatlineFactory);
-        }
-        return $this->factory('statline');
+        isset($factories['player']) ?: $factories['player'] = new PlayerFactory;
+        isset($factories['team']) ?: $factories['team'] = new TeamFactory;
+        isset($factories['statline']) ?: $factories['statline'] = new StatlineFactory;
+        isset($factories['match']) ?: $factories['match'] = new MatchFactory;
+        $this->addFactories($factories);
     }
 }

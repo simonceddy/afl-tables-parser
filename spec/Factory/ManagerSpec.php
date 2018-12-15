@@ -14,8 +14,8 @@ class ManagerSpec extends ObjectBehavior
         $this->shouldHaveType(Manager::class);
     }
 
-    function it_has_convenience_method_for_player_factory()
+    function it_loads_default_factories()
     {
-        $this->playerFactory()->shouldBeAnInstanceOf(PlayerFactory::class);
+        $this->factory('player')->shouldBeAnInstanceOf(PlayerFactory::class);
     }
 }
