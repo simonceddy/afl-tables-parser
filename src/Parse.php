@@ -2,7 +2,7 @@
 namespace Eddy\AflTables;
 
 use Eddy\AflTables\Parser\Txt\SeasonTxtFile;
-
+use Eddy\AflTables\Factory\Manager;
 
 /**
  * The Parse class acts as the entry point to the library's various parsers
@@ -19,7 +19,9 @@ class Parse
         array $factories = [],
         array $options = []
     ) {
-        $parser = new SeasonTxtFile($options['map'] ?? null, $factories);
+        $parser = new SeasonTxtFile($options['map'] ?? null, new Manager(
+            $factories
+        ));
         return $parser->parse($contents);
     }
 }

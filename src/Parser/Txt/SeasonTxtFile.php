@@ -1,23 +1,18 @@
 <?php
 namespace Eddy\AflTables\Parser\Txt;
 
+use Eddy\Norm\Contract\Model;
 use Eddy\AflTables\Contract\DataMap;
 use Eddy\AflTables\Contract\Factory;
+use Eddy\AflTables\Contract\FactoryManager;
 use Eddy\AflTables\Contract\Parser;
-use Eddy\AflTables\Factory\PlayerFactory;
-use Eddy\AflTables\Factory\TeamFactory;
-use Eddy\AflTables\Factory\StatlineFactory;
-use Eddy\AflTables\Factory\MatchFactory;
-use Eddy\AflTables\Support\HasFactoryArray;
+use Eddy\AflTables\Factory\Manager;
 use Eddy\AflTables\Map\SeasonTxtMap;
 use Eddy\AflTables\Util\Splitter;
 use Eddy\AflTables\Util\TeamName;
-use Eddy\Norm\Contract\Model;
 
 class SeasonTxtFile implements Parser
 {
-    use HasFactoryArray;
-
     /**
      * DataMap - maps keys to their column names
      *
@@ -37,29 +32,12 @@ class SeasonTxtFile implements Parser
 
     protected $statlines = [];
 
-    protected $allowed_factories = [
-        'player',
-        'statline',
-        'team',
-        'roster',
-        'match'
-    ];
-
     public function __construct(
         DataMap $map = null,
-        array $factories = []
+        FactoryManager $factories = null
     ) {
         $this->map = $map ?? new SeasonTxtMap;
-        $this->initFactories($factories);
-    }
-
-    private function initFactories(array $factories)
-    {
-        isset($factories['player']) ?: $factories['player'] = new PlayerFactory;
-        isset($factories['team']) ?: $factories['team'] = new TeamFactory;
-        isset($factories['statline']) ?: $factories['statline'] = new StatlineFactory;
-        isset($factories['match']) ?: $factories['match'] = new MatchFactory;
-        $this->addFactories($factories);
+        $this->factories = $factories ?? new Manager();
     }
 
     public function parse(string $input): array
@@ -103,7 +81,9 @@ class SeasonTxtFile implements Parser
     protected function initStatline(array $data, Model $player)
     {
         $data['player'] = $player->uuid();
-        $this->statlines[] = $this->factory('statline')->buildFrom($data);
+        $this->statlines[] = $this->factories
+            ->factory('statline')
+            ->buildFrom($data);
     }
 
     protected function initTeam(string $team)
@@ -112,7 +92,7 @@ class SeasonTxtFile implements Parser
         if (!$data) {
             throw new \LogicException('Invalid team: '.$team);
         }
-        $this->teams[$team] = $this->factory('team')->buildFrom([
+        $this->teams[$team] = $this->factories->factory('team')->buildFrom([
             'team_short' => $team,
             'city' => $data[0],
             'name' => $data[1]
@@ -126,7 +106,8 @@ class SeasonTxtFile implements Parser
 
     protected function initPlayer(array $data)
     {
-        $this->players[$data['name']] = $this->factory('player')
+        $this->players[$data['name']] = $this->factories
+            ->factory('player')
             ->buildFrom($data);
         // If Uuid is present generate UUIDs for players.
         if (class_exists('Ramsey\Uuid\Uuid')) {
