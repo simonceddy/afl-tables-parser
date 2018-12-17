@@ -2,24 +2,14 @@
 namespace Eddy\AflTables\Parser\Txt;
 
 use Eddy\Norm\Contract\Model;
-use Eddy\AflTables\Contract\DataMap;
-use Eddy\AflTables\Contract\Factory;
-use Eddy\AflTables\Contract\FactoryManager;
-use Eddy\AflTables\Contract\Parser;
 use Eddy\AflTables\Factory\Manager;
 use Eddy\AflTables\Map\SeasonTxtMap;
 use Eddy\AflTables\Util\Splitter;
 use Eddy\AflTables\Util\TeamName;
+use Eddy\AflTables\Parser\BaseParser;
 
-class SeasonTxtFile implements Parser
+class SeasonTxtFile extends BaseParser
 {
-    /**
-     * DataMap - maps keys to their column names
-     *
-     * @var DataMap
-     */
-    protected $map;
-
     protected $teams = [];
 
     protected $rosters = [];
@@ -31,14 +21,6 @@ class SeasonTxtFile implements Parser
     protected $matches = [];
 
     protected $statlines = [];
-
-    public function __construct(
-        DataMap $map = null,
-        FactoryManager $factories = null
-    ) {
-        $this->map = $map ?? new SeasonTxtMap;
-        $this->factories = $factories ?? new Manager();
-    }
 
     public function parse(string $input): array
     {
