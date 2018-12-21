@@ -1,7 +1,7 @@
 <?php
 namespace Eddy\AflTables\Factory;
 
-use Eddy\Norm\Player;
+use Eddy\AflTables\Model\Player;
 use Eddy\Norm\Contract\Model;
 use Eddy\AflTables\Contract\Factory;
 

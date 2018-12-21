@@ -3,7 +3,7 @@ namespace Eddy\AflTables\Factory;
 
 use Eddy\AflTables\Contract\Factory;
 use Eddy\Norm\Contract\Model;
-use Eddy\Norm\Match;
+use Eddy\AflTables\Model\Match;
 
 class MatchFactory implements Factory
 {

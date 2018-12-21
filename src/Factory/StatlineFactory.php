@@ -1,7 +1,7 @@
 <?php
 namespace Eddy\AflTables\Factory;
 
-use Eddy\Norm\Statline;
+use Eddy\AflTables\Model\Statline;
 use Eddy\Norm\Contract\Model;
 use Eddy\AflTables\Contract\Factory;
 
