@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7f309b9a61910cc1b2baa1d3c60c8ca",
+    "content-hash": "d50130904e591f77a10288df8ac304ed",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -464,6 +464,42 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "simoneddy/aker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simonceddy/aker.git",
+                "reference": "d507c2a41ee9976dc4d0884918fef1bc0fbd01f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simonceddy/aker/zipball/d507c2a41ee9976dc4d0884918fef1bc0fbd01f6",
+                "reference": "d507c2a41ee9976dc4d0884918fef1bc0fbd01f6",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpspec/phpspec": "^5.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Eddy\\Aker\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Eddy",
+                    "email": "simon@simoneddy.com.au"
+                }
+            ],
+            "description": "Basic util for handling JSON files",
+            "time": "2018-12-22 04:28:41"
         },
         {
             "name": "simoneddy/norm",
@@ -1856,7 +1892,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "simoneddy/norm": 15
+        "simoneddy/norm": 15,
+        "simoneddy/aker": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
