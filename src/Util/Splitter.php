@@ -1,6 +1,6 @@
 <?php
 
-namespace Eddy\AflTables\Util;
+namespace AflParser\Util;
 
 class Splitter
 {
