@@ -1,6 +1,12 @@
 suites:
-  default:
-    psr4_prefix:  Eddy\AflTables
-    namespace:    Eddy\AflTables
+#  default:
+#    psr4_prefix:  Eddy\AflTables
+#    namespace:    Eddy\AflTables
+
+  parser:
+    psr4_prefix:  Eddy\FootyParser
+    namespace:    Eddy\FootyParser
+    spec_path:    parser
+    src_path:     parser/src
 
 formatter.name: pretty

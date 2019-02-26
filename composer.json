@@ -16,7 +16,8 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Eddy\\AflTables\\": "src"
+            "Eddy\\AflTables\\": "src",
+            "Eddy\\FootyParser\\": "parser/src"
         }
     },
     "require": {
