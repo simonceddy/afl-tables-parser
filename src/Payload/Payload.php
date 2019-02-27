@@ -12,6 +12,8 @@ namespace AflParser\Payload;
 */
 class Payload
 {
+    public $single_season = true;
+
     /**
      * The individual season, if appropriate.
      *
@@ -26,6 +28,8 @@ class Payload
      * 
      * If a single season is being parsed, a teams data can contain its roster
      *
+     * the teams processed.
+     * 
      * @var array
      */
     public $teams = [];
@@ -37,6 +41,8 @@ class Payload
      * 
      * If parsing data from a single season, rosters can be stored as team data.
      *
+     * The rosters processed.
+     * 
      * @var array
      */
     public $rosters = [];
@@ -45,22 +51,56 @@ class Payload
      * The players, if any, that have been processed.
      * 
      * Players should assigned to team rosters.
+     * 
+     * The players processed.
      *
      * @var array
      */
     public $players = [];
 
     /**
-     * The matches processed, if any.
-     * 
-     * Matches should be stored as either:
-     * - season => round => match, or
-     * - round => match, if parsing a single season.
-     * 
-     * Even if processing a single match the round, and season if possible,
-     * should be recorded.
+     * The matches processed.
      *
      * @var array
      */
     public $matches = [];
+
+    /**
+     * The matches processed, if any.
+     * 
+     * @return  array
+     */ 
+    public function getAllMatches()
+    {
+        return $this->matches;
+    }
+
+    public function hasMatch()
+    {
+        
+    }
+
+    /**
+     * Get the individual season, if appropriate.
+     *
+     * @return  int
+     */ 
+    public function getSeason()
+    {
+        return $this->season;
+    }
+
+    /**
+     * Set the individual season, if appropriate.
+     *
+     * @param  int  $season
+     *
+     * @return  self
+     */ 
+    public function setSeason(int $season)
+    {
+        $this->season = $season;
+
+        return $this;
+    }
 }

@@ -2,22 +2,24 @@
 namespace AflParser;
 
 use AflParser\Util\Splitter;
-use AflParser\Support\ColumnMap\ColumnMapInterface;
-use AflParser\Support\ColumnMap\SeasonTxtMap;
-use AflParser\Processor\ProcessTeam;
+use AflParser\Mappings\MappingsInterface;
+use AflParser\Mappings\SeasonTxtMappings;
+use AflParser\Payload\Payload;
 
 class SeasonTxtParser extends BaseParser
 {
-    public function __construct(ColumnMapInterface $mappings = null)
+    public function __construct(MappingsInterface $mappings = null)
     {
-        parent::__construct($mappings ?? new SeasonTxtMap());
+        parent::__construct($mappings ?? new SeasonTxtMappings ());
         $this->initDefaultProcessors();
     }
     
     private function initDefaultProcessors()
     {
         $this->addProcessors([
-            new ProcessTeam(),
+            new Processor\ProcessTeam(),
+            new Processor\ProcessPlayer(),
+            new Processor\AddToRoster(),
         ]);
     }
 
@@ -33,13 +35,17 @@ class SeasonTxtParser extends BaseParser
 
         $mappings = $this->mappings->mappings();
 
+        $payload = new Payload();
+
         // process lines as CSV
         foreach ($lines as $line) {
             if (count($row = str_getcsv($line)) === count($mappings)) {
-                $result[] = array_combine($mappings, $row);
+                $row = array_combine($mappings, $row);
+                $this->process($row, $payload);
+                $result[] = $row;
             }
         }
         
-        return $result;
+        return $payload;
     }
 }

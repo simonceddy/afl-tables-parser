@@ -1,7 +1,7 @@
 <?php
-namespace AflParser\Support\ColumnMap;
+namespace AflParser\Mappings;
 
-interface ColumnMapInterface
+interface MappingsInterface
 {
     /**
      * Returns an array of column mappings (number => column name).

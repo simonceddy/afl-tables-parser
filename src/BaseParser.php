@@ -1,8 +1,9 @@
 <?php
 namespace AflParser;
 
-use AflParser\Support\ColumnMap\ColumnMapInterface;
 use AflParser\Support\Traits\HasProcessorStack;
+use AflParser\Mappings\MappingsInterface;
+use AflParser\Payload\Payload;
 
 abstract class BaseParser implements ParserInterface, ProcessorStackInterface
 {
@@ -11,9 +12,16 @@ abstract class BaseParser implements ParserInterface, ProcessorStackInterface
     /**
      * Column name mappings.
      *
-     * @var ColumnMapInterface
+     * @var MappingsInterface
      */
     protected $mappings;
+
+    /**
+     * The Processor object
+     *
+     * @var Processor
+     */
+    protected $processor;
 
     abstract public function parse(string $source);
 
@@ -22,11 +30,13 @@ abstract class BaseParser implements ParserInterface, ProcessorStackInterface
      * 
      * Extending classes can pass their specific mappings to parent::__construct
      *
-     * @param ColumnMapInterface $mappings
+     * Mappings can be set after construction via the setMappings() method.
+     * 
+     * @param MappingsInterface $mappings
      */
-    public function __construct(ColumnMapInterface $mappings)
+    public function __construct(MappingsInterface $mappings = null)
     {
-        $this->mappings = $mappings;
+        !$mappings ?: $this->setMappings($mappings);
     }
 
     /**
@@ -39,8 +49,35 @@ abstract class BaseParser implements ParserInterface, ProcessorStackInterface
         return $this->mappings->mappings();
     }
 
-    protected function process()
+    protected function process(array $row, Payload $payload)
     {
+        isset(
+            $this->processor
+        ) ?: $this->processor = new Processor($this);
+        return $this->processor->process($row, $payload);
+    }
 
+    /**
+     * Get column name mappings.
+     *
+     * @return  MappingsInterface
+     */ 
+    public function getMappings()
+    {
+        return $this->mappings;
+    }
+
+    /**
+     * Set column name mappings.
+     *
+     * @param  MappingsInterface  $mappings  Column name mappings.
+     *
+     * @return  self
+     */ 
+    public function setMappings(MappingsInterface $mappings)
+    {
+        $this->mappings = $mappings;
+
+        return $this;
     }
 }

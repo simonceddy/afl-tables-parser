@@ -23,10 +23,13 @@
         "guzzlehttp/guzzle": "^6.3",
         "symfony/dom-crawler": "^4.2",
         "symfony/browser-kit": "^4.2",
-        "ramsey/uuid": "^3.8"
+        "ramsey/uuid": "^3.8",
+        "vlucas/valitron": "^1.4"
     },
     "require-dev": {
         "phpspec/phpspec": "^5.1",
-        "symfony/var-dumper": "^4.2"
+        "symfony/var-dumper": "^4.2",
+        "illuminate/database": "^5.8",
+        "illuminate/events": "^5.8"
     }
 }

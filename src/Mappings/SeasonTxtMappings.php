@@ -1,7 +1,7 @@
 <?php
-namespace AflParser\Support\ColumnMap;
+namespace AflParser\Mappings;
 
-class SeasonTxtMap implements ColumnMapInterface
+class SeasonTxtMappings implements MappingsInterface
 {
     private static $mappings = [
         0 => "Player",
