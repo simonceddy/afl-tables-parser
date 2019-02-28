@@ -1,5 +1,5 @@
 <?php
-namespace AflParser;
+namespace AflParser\Parser;
 
 interface ParserInterface
 {

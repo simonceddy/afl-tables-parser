@@ -1,9 +1,9 @@
 <?php
-namespace AflParser\Processor;
+namespace AflParser\Processor\Row;
 
 use AflParser\Payload\Payload;
 
-interface ProcessorInterface
+interface RowProcessorInterface
 {
     public function process(array $row, Payload $payload);
 }

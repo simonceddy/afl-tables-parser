@@ -1,18 +1,19 @@
 <?php
-namespace AflParser\Processor;
+namespace AflParser\Processor\Row;
 
 use AflParser\Payload\Payload;
 
-class AddToRoster implements ProcessorInterface
+class ProcessPlayer implements RowProcessorInterface
 {
     public function process(array $row, Payload $payload)
     {
-        if (!isset($payload->rosters[$team = $row['Team']])) {
-            $payload->rosters[$row['Team']] = [
-                'team' => $row['Team'],
-                'players' => []
+        if (!isset($payload->players[$player = $row['ID']])) {
+            $payload->players[$row['ID']] = [
+                'ID' => $row['ID'],
+                'name' => $row['Player']
             ];
         }
+        dd($payload->players);
         if (!isset($payload->rosters[$team]['players'][$row['ID']])) {
             $payload->rosters[$team]['players'][$row['ID']] = [];
         }

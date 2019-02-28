@@ -1,25 +1,32 @@
 <?php
-namespace AflParser;
+namespace AflParser\Parser;
 
 use AflParser\Util\Splitter;
 use AflParser\Mappings\MappingsInterface;
 use AflParser\Mappings\SeasonTxtMappings;
 use AflParser\Payload\Payload;
+use AflParser\Processor\Row;
 
 class SeasonTxtParser extends BaseParser
 {
+    public const MAPPINGS = SeasonTxtMappings::class;
+
     public function __construct(MappingsInterface $mappings = null)
     {
-        parent::__construct($mappings ?? new SeasonTxtMappings ());
+        if (!$mappings) {
+            $mappings = static::MAPPINGS;
+            $mappings = new $mappings;
+        }
+        parent::__construct($mappings);
         $this->initDefaultProcessors();
     }
     
     private function initDefaultProcessors()
     {
         $this->addProcessors([
-            new Processor\ProcessTeam(),
-            new Processor\ProcessPlayer(),
-            new Processor\AddToRoster(),
+            new Row\ProcessTeam(),
+            new Row\ProcessPlayer(),
+            new Row\AddToRoster(),
         ]);
     }
 

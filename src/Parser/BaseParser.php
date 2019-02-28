@@ -1,13 +1,15 @@
 <?php
-namespace AflParser;
+namespace AflParser\Parser;
 
-use AflParser\Support\Traits\HasProcessorStack;
 use AflParser\Mappings\MappingsInterface;
 use AflParser\Payload\Payload;
+use AflParser\Processor\ProcessorStackInterface;
+use AflParser\Processor\Processor;
+use AflParser\Support\Traits\ProcessesRows;
 
 abstract class BaseParser implements ParserInterface, ProcessorStackInterface
 {
-    use HasProcessorStack;
+    use ProcessesRows;
 
     /**
      * Column name mappings.

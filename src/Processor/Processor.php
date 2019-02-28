@@ -1,5 +1,5 @@
 <?php
-namespace AflParser;
+namespace AflParser\Processor;
 
 use AflParser\Payload\Payload;
 

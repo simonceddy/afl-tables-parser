@@ -1,10 +1,10 @@
 <?php
-namespace AflParser\Processor;
+namespace AflParser\Processor\Row;
 
 use AflParser\Payload\Payload;
 
 
-class ProcessTeam implements ProcessorInterface
+class ProcessTeam implements RowProcessorInterface
 {
     public function process(array $row,Payload $payload)
     {

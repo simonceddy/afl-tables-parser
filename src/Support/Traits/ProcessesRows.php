@@ -1,14 +1,13 @@
 <?php
 namespace AflParser\Support\Traits;
 
-use AflParser\Processor\ProcessorInterface;
+use AflParser\Processor\Row\RowProcessorInterface;
 
-
-trait HasProcessorStack
+trait ProcessesRows
 {
     protected $processors = [];
 
-    public function addProcessor(ProcessorInterface $processor, int $pos = null)
+    public function addProcessor(RowProcessorInterface $processor, int $pos = null)
     {
         if ($pos) {
             // handle position in stack

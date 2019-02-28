@@ -66,6 +66,13 @@ class Payload
     public $matches = [];
 
     /**
+     * Errors
+     *
+     * @var array
+     */
+    public $errors = [];
+
+    /**
      * The matches processed, if any.
      * 
      * @return  array

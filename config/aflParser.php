@@ -9,6 +9,10 @@ return [
      */
     'model_type' => 'default',
 
+    'avaliable_mappings' => [
+        
+    ],
+
     /**
      * Link mappings to a specific parser.
      * 
