@@ -1,6 +1,8 @@
 <?php
 namespace AflParser\Support\Models;
 
+use Ramsey\Uuid\Uuid;
+
 abstract class BaseModel extends \ArrayObject
 {
     /**
@@ -10,11 +12,18 @@ abstract class BaseModel extends \ArrayObject
      */
     protected $attributes;
 
+    /**
+     * Models UUID
+     *
+     * @var Uuid
+     */
+    protected $uuid;
+
     public function __construct(array $data = [])
     {
         if (!empty($data)) {
             // validate data
         }
-        parent::__construct();
+        parent::__construct($data, static::ARRAY_AS_PROPS);
     }
 }

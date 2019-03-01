@@ -5,6 +5,6 @@ class Player extends BaseModel
 {
     protected $attributes = [
         'surname',
-        'given_names'
+        'given_name'
     ];
 }
